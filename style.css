@@ -1,0 +1,719 @@
+/* Reset dan umum */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  height: 100%;
+  position: relative;
+  z-index: 0;
+  overflow-x: hidden;
+}
+
+/* Background blur dengan overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-image: url("bghome.jpg");
+  background-size: cover;
+  background-position: center;
+  filter: blur(5px);
+  z-index: -2;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.3);
+  z-index: -1;
+}
+
+/* Typography */
+h1 {
+  font-family: "Playfair Display", serif;
+  font-size: 60px;
+  color: #0a0909;
+  text-align: center;
+  margin-top: 20px;
+}
+
+h2 {
+  font-family: "Varela Round", sans-serif;
+  font-size: 25px;
+  color: #009ece;
+}
+
+p {
+  font-family: "Playfair Display", serif;
+  text-align: center;
+  font-size: 18px;
+  color: #ffffff;
+  margin-bottom: 30px;
+}
+
+/* NAVBAR */
+header {
+  background-color: #009ece;
+  padding: 10px 20px;
+  color: white;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #009ece;
+  flex-wrap: wrap;
+}
+
+.logo a {
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 18px;
+  background-color: rgba(255, 255, 255, 0.3);
+  padding: 8px 14px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.logo a:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #009ece;
+}
+
+#menu-toggle {
+  display: none;
+}
+
+.menu {
+  display: flex;
+  list-style: none;
+  gap: 15px;
+}
+
+.menu li a {
+  display: block;
+  text-align: left;
+  padding: 12px 20px;
+  color: #333;
+  font-weight: 600;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 16px;
+  transition: background-color 0.3s, transform 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.menu li a:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #009ece;
+  transform: scale(1.05);
+}
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+  z-index: 1000;
+  color: white;
+  user-select: none;
+}
+
+#menu-toggle {
+  display: none;
+}
+
+/* Responsive Hamburger Menu */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+  .menu {
+    position: fixed;
+    top: -18px;
+    right: -100%;
+    width: 20vw;
+    height: 100vh;
+    background-color: #e0e0e0;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 80px 10% 20px 10%;
+    gap: 20px;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+    transition: right 0.3s ease;
+    z-index: 999;
+  }
+
+  #menu-toggle:checked + .hamburger + .menu {
+    right: 0;
+  }
+
+  .menu li {
+    width: 100%;
+  }
+
+  .menu li a {
+    width: 100%;
+    background-color: #ddd;
+  }
+
+  .menu li a:hover {
+    background-color: #fff;
+    color: #009ece;
+  }
+
+  #menu-toggle:checked + .hamburger + .menu + .overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 998;
+    cursor: pointer;
+  }
+
+  .overlay {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+    margin-right: 20px;
+  }
+}
+
+/* Icon container */
+.icon-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+}
+
+.icon-container a {
+  text-decoration: none;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 140px;
+  padding: 15px;
+  margin: 10px;
+  background-color: rgba(255, 255, 255, 0.75);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.icon-container a:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+.icon-container img {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 10px;
+}
+
+.icon-container p {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  margin: 0;
+}
+
+/* Model 3D Container */
+.container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+.info {
+  width: 30%;
+  background-color: #222121;
+  padding: 20px;
+  color: #fff;
+  overflow-y: auto;
+}
+
+.info p {
+  text-align: justify;
+  line-height: 1.6;
+}
+
+.button-toggle {
+  background-color: rgba(255, 255, 255, 0.3);
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin-top: 20px;
+  display: inline-block;
+}
+
+.button-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #009ece;
+  transform: scale(1.03);
+}
+
+#detailBox {
+  margin-top: 10px;
+  background: #e0f7fa;
+  padding: 10px;
+  border-radius: 5px;
+  display: block;
+  max-height: 300px;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
+  opacity: 1;
+}
+
+#detailBox.hide {
+  max-height: 0;
+  opacity: 0;
+  padding: 0 10px;
+}
+
+.viewer {
+  width: 70%;
+  background-color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.viewer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("bgresistor.jpg");
+  background-size: cover;
+  background-position: center;
+  filter: blur(10px);
+  z-index: 0;
+}
+
+model-viewer {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  position: relative;
+  z-index: 1;
+}
+
+/* Hotspot styling */
+.Hotspot {
+  background: #fff;
+  border-radius: 32px;
+  border: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  height: 24px;
+  padding: 8px;
+  position: relative;
+  width: 24px;
+}
+
+.HotspotAnnotation {
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+  font-size: 14px;
+  font-weight: bold;
+  left: calc(100% + 1em);
+  padding: 0.5em 1em;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+}
+
+
+
+/* =========================
+   PATCH ANIMASI RESISTOR
+========================= */
+.page-resistor .container.resistor-layout {
+  display: flex;
+  min-height: calc(100vh - 92px);
+  width: 100%;
+  gap: 0;
+}
+
+.page-resistor .resistor-info {
+  width: 34%;
+  min-width: 320px;
+  background: linear-gradient(180deg, rgba(18, 24, 38, 0.96), rgba(26, 34, 54, 0.94));
+  color: #ffffff;
+  padding: 26px;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.page-resistor .resistor-info h2 {
+  color: #74d4ff;
+  margin-top: 0;
+}
+
+.page-resistor .resistor-info p {
+  color: #f2f5f7;
+  text-align: justify;
+  font-family: "Poppins", sans-serif;
+}
+
+.page-resistor .action-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.page-resistor .button-primary {
+  background: linear-gradient(135deg, #ff9d00, #ff6a00);
+}
+
+.page-resistor .button-secondary {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.page-resistor .status-card {
+  margin-top: 22px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 14px 26px rgba(0, 0, 0, 0.18);
+}
+
+.page-resistor .status-card h3 {
+  margin: 0 0 10px;
+  font-size: 20px;
+  color: #ffffff;
+}
+
+.page-resistor .status-animasi {
+  margin: 0 0 14px;
+  color: #ffffff !important;
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  text-align: left;
+}
+
+.page-resistor .phase-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.page-resistor .phase-chip {
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #e5eef8;
+  font-size: 13px;
+  font-weight: 600;
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.page-resistor .phase-chip.active {
+  background: linear-gradient(135deg, #ffd16a, #ff8a00);
+  color: #202020;
+  transform: translateY(-1px);
+}
+
+.page-resistor .arus-bar {
+  width: 100%;
+  height: 14px;
+  border-radius: 999px;
+  overflow: hidden;
+  margin-top: 16px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.page-resistor .arus-flow {
+  width: 0%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #ffd56f, #ff9b00, #ff6a00);
+  box-shadow: 0 0 20px rgba(255, 153, 0, 0.55);
+  transition: width 0.14s linear;
+}
+
+.page-resistor .status-note {
+  display: block;
+  margin-top: 10px;
+  color: #d9e3f0;
+  line-height: 1.5;
+}
+
+.page-resistor .resistor-viewer-panel {
+  width: 66%;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 40%, rgba(70, 119, 255, 0.16), transparent 38%),
+    linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
+}
+
+.page-resistor .resistor-viewer-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("bgresistor.jpg");
+  background-size: cover;
+  background-position: center;
+  filter: blur(8px);
+  transform: scale(1.05);
+  z-index: 0;
+}
+
+.page-resistor .viewer-stage {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  min-height: calc(100vh - 92px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.page-resistor .viewer-stage model-viewer {
+  width: min(78vw, 860px);
+  height: min(72vh, 720px);
+  z-index: 3;
+  background: transparent;
+  transition: transform 0.2s ease, filter 0.25s ease;
+}
+
+.page-resistor .viewer-stage.animating model-viewer {
+  filter: drop-shadow(0 0 18px rgba(255, 165, 0, 0.28));
+}
+
+.page-resistor .stage-glow,
+.page-resistor .heat-wave {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.page-resistor .stage-glow {
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(255, 162, 0, 0.32), rgba(255, 162, 0, 0.03) 58%, transparent 72%);
+  opacity: 0;
+  z-index: 1;
+}
+
+.page-resistor .heat-wave {
+  width: 620px;
+  height: 620px;
+  background: radial-gradient(circle, rgba(255, 217, 102, 0.10), transparent 62%);
+  opacity: 0;
+  z-index: 1;
+}
+
+.page-resistor .viewer-stage.animating .stage-glow {
+  animation: resistorPulse 1.8s ease-in-out infinite;
+}
+
+.page-resistor .viewer-stage.animating .heat-wave {
+  animation: heatPulse 2.6s ease-in-out infinite;
+}
+
+.page-resistor .current-lane {
+  position: absolute;
+  left: 14%;
+  right: 14%;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.12);
+  overflow: hidden;
+  z-index: 2;
+  opacity: 0.45;
+}
+
+.page-resistor .current-lane-top {
+  top: 36%;
+}
+
+.page-resistor .current-lane-bottom {
+  bottom: 36%;
+}
+
+.page-resistor .particle {
+  position: absolute;
+  top: 50%;
+  left: -14%;
+  width: 80px;
+  height: 100%;
+  transform: translateY(-50%);
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, #ffae00, transparent);
+  box-shadow: 0 0 12px rgba(255, 174, 0, 0.7);
+  opacity: 0;
+}
+
+.page-resistor .viewer-stage.animating .particle {
+  opacity: 1;
+}
+
+.page-resistor .viewer-stage.animating .particle-1 {
+  animation: moveParticle 1.4s linear infinite;
+}
+.page-resistor .viewer-stage.animating .particle-2 {
+  animation: moveParticle 1.4s linear 0.45s infinite;
+}
+.page-resistor .viewer-stage.animating .particle-3 {
+  animation: moveParticle 1.4s linear 0.9s infinite;
+}
+
+.page-resistor .direction-label,
+.page-resistor .heat-label,
+.page-resistor .current-caption {
+  position: absolute;
+  z-index: 4;
+  background: rgba(17, 24, 39, 0.70);
+  color: #ffffff;
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 999px;
+  padding: 10px 14px;
+  font-size: 14px;
+  backdrop-filter: blur(6px);
+}
+
+.page-resistor .direction-left {
+  left: 6%;
+  top: 47%;
+}
+
+.page-resistor .direction-right {
+  right: 6%;
+  top: 47%;
+}
+
+.page-resistor .heat-label {
+  top: 16%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.page-resistor .current-caption {
+  bottom: 6%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.page-resistor .viewer-stage[data-phase="arus"] .direction-left,
+.page-resistor .viewer-stage[data-phase="stabil"] .direction-right {
+  border-color: rgba(255, 170, 0, 0.8);
+  box-shadow: 0 0 16px rgba(255, 170, 0, 0.32);
+}
+
+.page-resistor .viewer-stage[data-phase="panas"] .heat-label {
+  border-color: rgba(255, 170, 0, 0.8);
+  box-shadow: 0 0 18px rgba(255, 170, 0, 0.30);
+}
+
+@keyframes moveParticle {
+  0% {
+    left: -14%;
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  88% {
+    opacity: 1;
+  }
+  100% {
+    left: 108%;
+    opacity: 0;
+  }
+}
+
+@keyframes resistorPulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(0.92);
+    opacity: 0.22;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.14);
+    opacity: 0.68;
+  }
+}
+
+@keyframes heatPulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(0.94);
+    opacity: 0.08;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.08);
+    opacity: 0.24;
+  }
+}
+
+@media (max-width: 980px) {
+  .page-resistor .container.resistor-layout {
+    flex-direction: column;
+  }
+
+  .page-resistor .resistor-info,
+  .page-resistor .resistor-viewer-panel {
+    width: 100%;
+  }
+
+  .page-resistor .viewer-stage {
+    min-height: 70vh;
+  }
+
+  .page-resistor .viewer-stage model-viewer {
+    width: min(92vw, 720px);
+    height: min(58vh, 560px);
+  }
+
+  .page-resistor .direction-left,
+  .page-resistor .direction-right,
+  .page-resistor .heat-label,
+  .page-resistor .current-caption {
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+
+  .page-resistor .current-lane {
+    left: 8%;
+    right: 8%;
+  }
+}
