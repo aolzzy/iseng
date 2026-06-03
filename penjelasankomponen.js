@@ -1,34 +1,39 @@
 const penjelasanKomponen = {
-  resistor: `
-    <h2>Resistor</h2>
-    <p>Resistor adalah komponen pasif yang berfungsi membatasi arus listrik di dalam rangkaian.</p>
-    <p>Pada visualisasi ini, arus ditampilkan sebagai partikel bergerak yang melewati resistor dari sisi kiri ke kanan.</p>
-    <p>Ketika arus melewati resistor, muncul efek hambatan dan panas kecil untuk menggambarkan disipasi energi pada resistor.</p>
-    <p>Warna gelang pada resistor menunjukkan nilai resistansi dalam satuan Ohm (Ω).</p>
-  `,
-  kapasitor: `
-    <h2>Kapasitor</h2>
-    <p>Kapasitor adalah komponen yang digunakan untuk menyimpan muatan listrik sementara dalam medan listrik.</p>
-    <p>Nilai kapasitansinya diukur dalam satuan Farad (F).</p>
-    <p>Contoh: Kapasitor elektrolit dan kapasitor keramik.</p>
-  `,
-  dioda: `
-    <h2>Dioda</h2>
-    <p>Dioda adalah komponen yang hanya mengalirkan arus listrik dalam satu arah saja.</p>
-    <p>Biasanya digunakan sebagai penyearah arus (rectifier).</p>
-    <p>Contoh dioda yang ditampilkan adalah diode LED.</p>
-  `,
-  transistor: `
-    <h2>Transistor</h2>
-    <p>Transistor adalah komponen aktif yang berfungsi sebagai penguat, saklar, atau pemutus arus listrik.</p>
-    <p>Terdiri dari tiga kaki: basis, kolektor, dan emitor.</p>
-    <p>Contoh: Transistor NPN (BC547), PNP (BC558).</p>
-  `,
-  flipflop: `
-  <h2>Rangkaian Flip-Flop</h2>
-  <p>Rangkaian ini adalah jenis multivibrator bistabil yang terdiri dari dua transistor, dua kapasitor, dan empat resistor.</p>
-  <p>Ketika diaktifkan, rangkaian akan membuat LED berkedip secara bergantian seperti efek "flip-flop".</p>
-  <p>Biasanya digunakan dalam aplikasi lampu kelap-kelip, timer, dan sirkuit logika sederhana.</p>
-  <img src="flip flop.gif" alt="Skema Flip Flop" style="width: 100%; margin-top: 10px; border-radius: 8px;">
-`,
+    resistor: `
+        <h2>Resistor Pasif</h2>
+        <p>Resistor merupakan komponen elektronik pasif yang didesain khusus untuk membatasi, mengatur, dan menahan laju arus listrik dalam suatu sirkuit sistem sirkular.</p>
+        <p><strong>Fungsi Utama:</strong> Menghindari kelebihan beban arus pada komponen sensitif seperti LED atau Transistor.</p>
+        <p><strong>Sistem Kode Warna:</strong> Gelang warna pada badan fisik resistor menunjukkan nilai resistansi (Ohm / Ω) beserta tingkat toleransinya.</p>
+    `,
+    kapasitor: `
+        <h2>Kapasitor / Kondensator</h2>
+        <p>Kapasitor adalah elemen pasif elektrostatik yang mengumpulkan dan menyimpan muatan listrik sementara waktu di dalam medan listrik internalnya.</p>
+        <p><strong>Fungsi Utama:</strong> Sebagai penyaring frekuensi (filter), perata arus AC ke DC, dan penyedia delay waktu muatan daya (charging/discharging) sirkuit multivibrator.</p>
+        <p><strong>Satuan:</strong> Nilai kapasitas diukur dalam Farad (F), umumnya mikroFarad (µF) atau nanoFarad (nF).</p>
+    `,
+    dioda: `
+        <h2>Dioda Semi-Konduktor (LED)</h2>
+        <p>Dioda adalah komponen aktif dua kutub (Anoda dan Katoda) yang mengalirkan arus listrik hanya ke satu arah mutlak dan memblokir arus dari arah sebaliknya.</p>
+        <p><strong>Light Emitting Diode (LED):</strong> Jenis dioda khusus yang mampu memancarkan cahaya emisi foton ketika dilewati arus bias maju (forward bias).</p>
+    `,
+    transistor: `
+        <h2>Transistor Aktif NPN</h2>
+        <p>Transistor merupakan pilar utama elektronika modern yang berfungsi sebagai penguat sinyal, regulator tegangan, dan saklar otomatis kecepatan tinggi.</p>
+        <p><strong>Konfigurasi Kaki:</strong> Terdiri dari 3 terminal utama yaitu Basis (B) sebagai pengendali/gerbang, Kolektor (C) sebagai pintu masuk arus beban, dan Emitor (E) sebagai pintu keluar arus.</p>
+    `,
+    flipflop: `
+        <h2>Sistem Rangkaian Flip-Flop</h2>
+        <p>Rangkaian ini menerapkan sistem Multivibrator Bistabil interaktif yang memicu kondisi ON/OFF secara bergantian pada dua buah lampu LED.</p>
+        <p><strong>Cara Kerja Mekanis:</strong> Ketika power aktif, kapasitor pertama akan melakukan pengisian daya (Charging). Setelah penuh, ia melepaskan muatan ke basis Transistor untuk mengaktifkannya menjadi saklar ON, menyalakan LED pertama, sementara sirkuit seberangnya bersiap melakukan pembalikan siklus (Delay Circuit Time).</p>
+    `
 };
+
+// Auto render konten ke div ID yang dituju sesuai halaman aktif
+document.addEventListener("DOMContentLoaded", function() {
+    for (const [key, value] of Object.entries(penjelasanKomponen)) {
+        const targetElement = document.getElementById(`penjelasan-${key}`);
+        if (targetElement) {
+            targetElement.innerHTML = value;
+        }
+    }
+});

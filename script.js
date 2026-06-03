@@ -1,38 +1,37 @@
-function toggleInfo() {
-  const box = document.getElementById("detailBox");
-  box.style.display = box.style.display === "none" ? "block" : "none";
-}
-function toggleInfo() {
-  const box = document.getElementById("detailBox");
-  box.classList.toggle("hide");
-}
+// Logika Pembelajaran AR Elektronika Dasar
 function launchAR() {
-  const viewer = document.querySelector("model-viewer");
-  viewer.activateAR();
+    const viewer = document.querySelector("model-viewer");
+    if (viewer) {
+        viewer.activateAR();
+    }
 }
-// klik diluar sidebar untuk menghilangkan navbar menu
-// Tutup menu saat klik area luar menu (overlay)
+
+// Pengaturan overlay & navbar responsif (Bugs fixed dari versi lawas)
 document.addEventListener("DOMContentLoaded", function () {
-  const menuToggle = document.getElementById("menu-toggle");
-  const overlay = document.createElement("div");
+    const menuToggle = document.getElementById("menu-toggle");
+    
+    if (menuToggle) {
+        // Buat element overlay secara dinamis jika belum ada
+        let overlay = document.querySelector(".overlay");
+        if (!overlay) {
+            overlay = document.createElement("div");
+            overlay.classList.add("overlay");
+            document.body.appendChild(overlay);
+        }
 
-  // Tambah overlay ke body
-  overlay.classList.add("overlay");
-  document.body.appendChild(overlay);
-
-  // Klik overlay = tutup menu
-  overlay.addEventListener("click", () => {
-    menuToggle.checked = false;
-
-    document.addEventListener("DOMContentLoaded", function () {
-      const menuToggle = document.getElementById("menu-toggle");
-      const overlay = document.querySelector(".overlay"); // ambil dari HTML
-
-      if (overlay) {
-        overlay.addEventListener("click", () => {
-          menuToggle.checked = false;
+        // Tampilkan/sembunyikan overlay saat hamburger dicentang
+        menuToggle.addEventListener("change", function () {
+            if (this.checked) {
+                overlay.style.display = "block";
+            } else {
+                overlay.style.display = "none";
+            }
         });
-      }
-    });
-  });
+
+        // Tutup menu jika area luar (overlay) diklik
+        overlay.addEventListener("click", function () {
+            menuToggle.checked = false;
+            overlay.style.display = "none";
+        });
+    }
 });

@@ -1,120 +1,62 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Resistor | Pembelajaran AR</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="style.css" />
-    <script
-      type="module"
-      src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"
-    ></script>
-  </head>
-  <body class="page-resistor">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resistor Pasif | Hub Pembelajaran 3D AR</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+</head>
+<body>
     <header>
-      <nav class="navbar">
-        <div class="logo"><a href="index.html">Home</a></div>
-        <input type="checkbox" id="menu-toggle" />
-        <label for="menu-toggle" class="hamburger">&#9776;</label>
-        <ul class="menu">
-          <li><a href="resistor.html">Resistor</a></li>
-          <li><a href="kapasitor.html">Kapasitor</a></li>
-          <li><a href="dioda.html">Dioda</a></li>
-          <li><a href="transistor.html">Transistor</a></li>
-          <li><a href="rangkaian.html">Rangkaian</a></li>
-        </ul>
-      </nav>
+        <nav class="navbar">
+            <div class="logo"><a href="index.html">⚡ ElectroAR</a></div>
+            <input type="checkbox" id="menu-toggle" />
+            <label for="menu-toggle" class="hamburger">&#9776;</label>
+            <ul class="menu">
+                <li><a href="resistor.html">Resistor</a></li>
+                <li><a href="kapasitor.html">Kapasitor</a></li>
+                <li><a href="dioda.html">Dioda</a></li>
+                <li><a href="transistor.html">Transistor</a></li>
+                <li><a href="rangkaian.html">Rangkaian Lab</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <div class="container resistor-layout">
-      <div class="info resistor-info">
-        <div id="penjelasan-resistor"></div>
+    <div class="container">
+        <!-- DETAIL PENJELASAN (DINAMIS VIA JS) -->
+        <section class="info">
+            <div id="penjelasan-resistor"></div>
+            <button class="button-toggle" onclick="launchAR()">Buka di Ruang AR Kamu</button>
+        </section>
 
-        <div class="action-group">
-          <button class="button-toggle" onclick="launchAR()">Aktifkan AR</button>
-          <button class="button-toggle button-primary" id="btnAnimasiResistor" type="button">
-            Mulai Animasi
-          </button>
-          <button class="button-toggle button-secondary" id="btnPauseAnimasiResistor" type="button">
-            Pause
-          </button>
-          <button class="button-toggle button-secondary" id="btnResetAnimasiResistor" type="button">
-            Reset
-          </button>
-        </div>
+        <!-- VIEWER 3D INTERAKTIF DENGAN HOTSPOTS -->
+        <section class="viewer">
+            <model-viewer
+                src="resistor.glb"
+                ar
+                ar-modes="webxr scene-viewer quick-look"
+                camera-controls
+                auto-rotate
+                autoplay
+                shadow-intensity="1.5"
+                shadow-softness="1"
+                alt="Model 3D Interaktif Resistor Pasif"
+            >
+                
+<button class="hotspot-btn" slot="hotspot-1" data-position="0 0.1 0" data-normal="0 1 0">
+    <div class="annotation"><strong>Badan Keramik:</strong> Isolator penyangga materi karbon film penahan arus.</div>
+</button>
+<button class="hotspot-btn" slot="hotspot-2" data-position="0.5 0 0" data-normal="1 0 0">
+    <div class="annotation"><strong>Kaki Terminal (Lead):</strong> Kawat konduktor penghubung sirkuit PCB.</div>
+</button>
 
-        <div class="status-card">
-          <h3>Status Animasi</h3>
-          <p class="status-animasi" id="statusResistor">
-            Status: standby
-          </p>
-
-          <div class="phase-list">
-            <div class="phase-chip" id="chip-arus-masuk">Arus masuk</div>
-            <div class="phase-chip" id="chip-hambatan">Hambatan</div>
-            <div class="phase-chip" id="chip-panas">Panas resistif</div>
-            <div class="phase-chip" id="chip-stabil">Kondisi stabil</div>
-          </div>
-
-          <div class="arus-bar">
-            <div class="arus-flow" id="arusFlow"></div>
-          </div>
-          <small class="status-note">
-            Visualisasi ini menunjukkan aliran arus, efek hambatan, dan panas kecil pada resistor.
-          </small>
-        </div>
-      </div>
-
-      <div class="viewer resistor-viewer-panel">
-        <div class="viewer-stage" id="resistorStage">
-          <div class="stage-glow"></div>
-          <div class="heat-wave"></div>
-
-          <div class="current-lane current-lane-top">
-            <span class="particle particle-1"></span>
-            <span class="particle particle-2"></span>
-            <span class="particle particle-3"></span>
-          </div>
-
-          <div class="current-lane current-lane-bottom">
-            <span class="particle particle-1"></span>
-            <span class="particle particle-2"></span>
-            <span class="particle particle-3"></span>
-          </div>
-
-          <div class="direction-label direction-left">Arus masuk</div>
-          <div class="direction-label direction-right">Arus keluar</div>
-          <div class="heat-label">Panas kecil pada resistor</div>
-
-          <model-viewer
-            id="resistorViewer"
-            src="resistor.glb"
-            ar
-            ar-modes="scene-viewer webxr quick-look"
-            camera-controls
-            shadow-intensity="1"
-            exposure="1"
-            alt="Model 3D Resistor"
-          ></model-viewer>
-
-          <div class="current-caption">Visualisasi kerja resistor secara interaktif</div>
-        </div>
-      </div>
+            </model-viewer>
+        </section>
     </div>
 
     <script src="penjelasankomponen.js"></script>
     <script src="script.js"></script>
-    <script src="animasi-resistor.js"></script>
-    <script>
-      document.getElementById("penjelasan-resistor").innerHTML =
-        penjelasanKomponen.resistor;
-
-      function launchAR() {
-        const viewer = document.getElementById("resistorViewer");
-        if (viewer && typeof viewer.activateAR === "function") {
-          viewer.activateAR();
-        }
-      }
-    </script>
-  </body>
+</body>
 </html>

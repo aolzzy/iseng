@@ -1,66 +1,65 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Transistor | Pembelajaran AR</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="style.css" />
-    <script
-      type="module"
-      src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"
-    ></script>
-  </head>
-  <body>
-    <!-- 🔼 NAVBAR -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transistor NPN | Hub Pembelajaran 3D AR</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+</head>
+<body>
     <header>
-      <nav class="navbar">
-        <div class="logo"><a href="index.html"> Home</a></div>
-        <input type="checkbox" id="menu-toggle" />
-        <label for="menu-toggle" class="hamburger">&#9776;</label>
-        <ul class="menu">
-          <li><a href="resistor.html">Resistor</a></li>
-          <li><a href="kapasitor.html">Kapasitor</a></li>
-          <li><a href="dioda.html">Dioda</a></li>
-          <li><a href="transistor.html">Transistor</a></li>
-        </ul>
-      </nav>
+        <nav class="navbar">
+            <div class="logo"><a href="index.html">⚡ ElectroAR</a></div>
+            <input type="checkbox" id="menu-toggle" />
+            <label for="menu-toggle" class="hamburger">&#9776;</label>
+            <ul class="menu">
+                <li><a href="resistor.html">Resistor</a></li>
+                <li><a href="kapasitor.html">Kapasitor</a></li>
+                <li><a href="dioda.html">Dioda</a></li>
+                <li><a href="transistor.html">Transistor</a></li>
+                <li><a href="rangkaian.html">Rangkaian Lab</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <!-- 🔽 ISI HALAMAN -->
     <div class="container">
-      <!-- 🧠 Penjelasan Resistor -->
-      <div class="info">
-        <div id="penjelasan-transistor"></div>
-        <button class="button-toggle" onclick="launchAR()">Aktifkan AR</button>
-      </div>
+        <!-- DETAIL PENJELASAN (DINAMIS VIA JS) -->
+        <section class="info">
+            <div id="penjelasan-transistor"></div>
+            <button class="button-toggle" onclick="launchAR()">Buka di Ruang AR Kamu</button>
+        </section>
 
-      <!-- 🎯 Model 3D -->
-      <div class="viewer">
-        <model-viewer
-          src="transistor.glb"
-          ar
-          ar-modes="scene-viewer webxr quick-look"
-          camera-controls
-          auto-rotate
-          shadow-intensity="1"
-          alt="Model 3D Transistor"
-        >
-          <!-- (Opsional) Hotspot bisa ditambahkan di sini -->
-        </model-viewer>
-      </div>
+        <!-- VIEWER 3D INTERAKTIF DENGAN HOTSPOTS -->
+        <section class="viewer">
+            <model-viewer
+                src="transistor.glb"
+                ar
+                ar-modes="webxr scene-viewer quick-look"
+                camera-controls
+                auto-rotate
+                autoplay
+                shadow-intensity="1.5"
+                shadow-softness="1"
+                alt="Model 3D Interaktif Transistor NPN"
+            >
+                
+<button class="hotspot-btn" slot="hotspot-1" data-position="-0.3 -0.6 0" data-normal="0 -1 0">
+    <div class="annotation"><strong>Kaki Emitor (E):</strong> Saluran pembuangan muatan arus elektron.</div>
+</button>
+<button class="hotspot-btn" slot="hotspot-2" data-position="0 -0.6 0" data-normal="0 -1 0">
+    <div class="annotation"><strong>Kaki Basis (B):</strong> Gerbang pemicu saklar utama.</div>
+</button>
+<button class="hotspot-btn" slot="hotspot-3" data-position="0.3 -0.6 0" data-normal="0 -1 0">
+    <div class="annotation"><strong>Kaki Kolektor (C):</strong> Terminal penampung arus beban utama.</div>
+</button>
+
+            </model-viewer>
+        </section>
     </div>
 
-    <!-- 🧩 Panggil Komponen Penjelasan -->
     <script src="penjelasankomponen.js"></script>
-    <script>
-      document.getElementById("penjelasan-transistor").innerHTML =
-        penjelasanKomponen.transistor;
-
-      function launchAR() {
-        const viewer = document.querySelector("model-viewer");
-        viewer.activateAR();
-      }
-    </script>
     <script src="script.js"></script>
-  </body>
+</body>
 </html>

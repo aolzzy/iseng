@@ -1,66 +1,59 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Dioda | Pembelajaran AR</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="style.css" />
-    <script
-      type="module"
-      src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"
-    ></script>
-  </head>
-  <body>
-    <!-- 🔼 NAVBAR -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dioda LED | Hub Pembelajaran 3D AR</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+</head>
+<body>
     <header>
-      <nav class="navbar">
-        <div class="logo"><a href="index.html"> Home</a></div>
-        <input type="checkbox" id="menu-toggle" />
-        <label for="menu-toggle" class="hamburger">&#9776;</label>
-        <ul class="menu">
-          <li><a href="resistor.html">Resistor</a></li>
-          <li><a href="kapasitor.html">Kapasitor</a></li>
-          <li><a href="dioda.html">Dioda</a></li>
-          <li><a href="transistor.html">Transistor</a></li>
-        </ul>
-      </nav>
+        <nav class="navbar">
+            <div class="logo"><a href="index.html">⚡ ElectroAR</a></div>
+            <input type="checkbox" id="menu-toggle" />
+            <label for="menu-toggle" class="hamburger">&#9776;</label>
+            <ul class="menu">
+                <li><a href="resistor.html">Resistor</a></li>
+                <li><a href="kapasitor.html">Kapasitor</a></li>
+                <li><a href="dioda.html">Dioda</a></li>
+                <li><a href="transistor.html">Transistor</a></li>
+                <li><a href="rangkaian.html">Rangkaian Lab</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <!-- 🔽 ISI HALAMAN -->
     <div class="container">
-      <!-- 🧠 Penjelasan Dioda -->
-      <div class="info">
-        <div id="penjelasan-dioda"></div>
-        <button class="button-toggle" onclick="launchAR()">Aktifkan AR</button>
-      </div>
+        <!-- DETAIL PENJELASAN (DINAMIS VIA JS) -->
+        <section class="info">
+            <div id="penjelasan-dioda"></div>
+            <button class="button-toggle" onclick="launchAR()">Buka di Ruang AR Kamu</button>
+        </section>
 
-      <!-- 🎯 Model 3D -->
-      <div class="viewer">
-        <model-viewer
-          src="diode.glb"
-          ar
-          ar-modes="scene-viewer webxr quick-look"
-          camera-controls
-          auto-rotate
-          shadow-intensity="1"
-          alt="Model 3D Dioda"
-        >
-          <!-- (Opsional) Hotspot bisa ditambahkan di sini -->
-        </model-viewer>
-      </div>
+        <!-- VIEWER 3D INTERAKTIF DENGAN HOTSPOTS -->
+        <section class="viewer">
+            <model-viewer
+                src="diode.glb"
+                ar
+                ar-modes="webxr scene-viewer quick-look"
+                camera-controls
+                auto-rotate
+                autoplay
+                shadow-intensity="1.5"
+                shadow-softness="1"
+                alt="Model 3D Interaktif Dioda LED"
+            >
+                
+<button class="hotspot-btn" slot="hotspot-1" data-position="0 0.3 0" data-normal="0 1 0">
+    <div class="annotation"><strong>Anoda & Katoda Junction:</strong> Gerbang semi-konduktor satu arah arus.</div>
+</button>
+
+            </model-viewer>
+        </section>
     </div>
 
-    <!-- 🧩 Panggil Komponen Penjelasan -->
     <script src="penjelasankomponen.js"></script>
-    <script>
-      document.getElementById("penjelasan-dioda").innerHTML =
-        penjelasanKomponen.dioda;
-
-      function launchAR() {
-        const viewer = document.querySelector("model-viewer");
-        viewer.activateAR();
-      }
-    </script>
     <script src="script.js"></script>
-  </body>
+</body>
 </html>

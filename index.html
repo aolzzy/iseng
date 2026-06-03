@@ -1,44 +1,116 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
-  <head>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;600&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap"
-      rel="stylesheet"
-    />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elektronika 3D & AR Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- HEADER & NAVBAR -->
+    <header>
+        <nav class="navbar">
+            <div class="logo"><a href="index.html">⚡ ElectroAR</a></div>
+            <input type="checkbox" id="menu-toggle" />
+            <label for="menu-toggle" class="hamburger">&#9776;</label>
+            <ul class="menu">
+                <li><a href="resistor.html">Resistor</a></li>
+                <li><a href="kapasitor.html">Kapasitor</a></li>
+                <li><a href="dioda.html">Dioda</a></li>
+                <li><a href="transistor.html">Transistor</a></li>
+                <li><a href="rangkaian.html">Rangkaian Lab</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <meta charset="UTF-8" />
-    <title>Komponen Elektronika</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <h1>Komponen Elektronika</h1>
-    <p>Pilih salah satu komponen untuk dipelajari</p>
+    <!-- HERO SECTION -->
+    <main class="hero-container">
+        <div class="hero-text">
+            <h1>Interactive Electronic Pathology 3D</h1>
+            <p>Eksplorasi komponen elektronik dasar melalui visualisasi 3D Interaktif, sistem anotasi titik hotspot, dan simulasi dunia nyata menggunakan Augmented Reality (AR).</p>
+            <div class="search-bar-container">
+                <input type="text" id="searchComponents" placeholder="Cari komponen (misal: Resistor, NPN...)" onkeyup="filterComponents()">
+            </div>
+        </div>
 
-    <div class="icon-container">
-      <!-- Resistor -->
-      <a href="resistor.html">
-        <img src="resistor.png" alt="Resistor" />
-        <p>Resistor</p>
-      </a>
-      <!-- Kapasitor -->
-      <a href="kapasitor.html">
-        <img src="capasitor.png" alt="Kapasitor" />
-        <p>Kapasitor</p>
-      </a>
-      <!-- Dioda -->
-      <a href="dioda.html">
-        <img src="diode led.png" alt="Dioda" />
-        <p>Dioda</p>
-      </a>
-      <!-- Transistor -->
-      <a href="transistor.html">
-        <img src="transistor.png" alt="Transistor" />
-        <p>Transistor</p>
-      </a>
-    </div>
-  </body>
+        <!-- CATALOG GRID -->
+        <section class="catalog-section">
+            <h2 class="section-title">Katalog Komponen & Rangkaian</h2>
+            <div class="icon-container" id="catalogGrid">
+                <!-- Resistor -->
+                <div class="component-card" data-name="resistor pasif">
+                    <a href="resistor.html">
+                        <div class="card-image-wrapper">
+                            <img src="resistor.png" alt="Resistor" onerror="this.src='https://via.placeholder.com/150?text=Resistor+3D'">
+                        </div>
+                        <span class="badge pasif">Pasif</span>
+                        <h3>Resistor</h3>
+                        <p>Penahan & pembatas arus listrik</p>
+                    </a>
+                </div>
+                <!-- Kapasitor -->
+                <div class="component-card" data-name="kapasitor pasif kondensator">
+                    <a href="kapasitor.html">
+                        <div class="card-image-wrapper">
+                            <img src="capasitor.png" alt="Kapasitor" onerror="this.src='https://via.placeholder.com/150?text=Kapasitor+3D'">
+                        </div>
+                        <span class="badge pasif">Pasif</span>
+                        <h3>Kapasitor</h3>
+                        <p>Penyimpan muatan listrik temporer</p>
+                    </a>
+                </div>
+                <!-- Dioda -->
+                <div class="component-card" data-name="dioda aktif led rectifier">
+                    <a href="dioda.html">
+                        <div class="card-image-wrapper">
+                            <img src="diode led.png" alt="Dioda LED" onerror="this.src='https://via.placeholder.com/150?text=Dioda+3D'">
+                        </div>
+                        <span class="badge aktif">Aktif</span>
+                        <h3>Dioda LED</h3>
+                        <p>Penyearah arus & emisi cahaya</p>
+                    </a>
+                </div>
+                <!-- Transistor -->
+                <div class="component-card" data-name="transistor aktif npn pnp saklar">
+                    <a href="transistor.html">
+                        <div class="card-image-wrapper">
+                            <img src="transistor.png" alt="Transistor" onerror="this.src='https://via.placeholder.com/150?text=Transistor+3D'">
+                        </div>
+                        <span class="badge aktif">Aktif</span>
+                        <h3>Transistor</h3>
+                        <p>Saklar elektronik & penguat sinyal</p>
+                    </a>
+                </div>
+                <!-- Rangkaian Flip-Flop -->
+                <div class="component-card wide-card" data-name="rangkaian flipflop multivibrator led delay">
+                    <a href="rangkaian.html">
+                        <div class="card-image-wrapper">
+                            <img src="flip flop.gif" alt="Rangkaian Flip-Flop" onerror="this.src='https://via.placeholder.com/300150?text=Rangkaian+System+3D'">
+                        </div>
+                        <span class="badge system">System Rangkaian</span>
+                        <h3>Sistem Rangkaian Flip-Flop</h3>
+                        <p>Simulasi interaktif delay sirkuit & aliran arus terintegrasi</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        function filterComponents() {
+            let input = document.getElementById('searchComponents').value.toLowerCase();
+            let cards = document.getElementsByClassName('component-card');
+            for (let i = 0; i < cards.length; i++) {
+                let name = cards[i].getAttribute('data-name');
+                if (name.includes(input)) {
+                    cards[i].style.display = "block";
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
 </html>
